@@ -2,7 +2,7 @@
 
 Spoof OSX version of PS4 Remote play into thinking that the Hori Mini Wired Gamepad is a Dualshock 4 controller.
 
-## Getting Started
+## Building
 
 ### Prerequisites
 
@@ -13,16 +13,28 @@ You need to have the official PS4 Remote play, and XCode Command Line Tools inst
 ```
 git clone https://github.com/sperrichon/hori-mini-wired-gamepad-remote-play
 cd hori-mini-wired-gamepad-remote-play
-./build.sh
+./build/compile-lib.sh # out/iohid_wrap.dylib created
 ```
 
-If everything went well, run this script to launch Remote Play:
+### Testing
+
+If everything went well, run this script to test Remote Play:
 
 ```
-./run.sh
+./build/run.sh
 ```
 
 **Note**: The script assumes Remote play is installed at `/Applications/RemotePlay.app`. If this is not the case, you'll need to modify run.sh accordingly. 
+
+### Creating wrapper
+
+Once compiled, you can create a wrapper which makes running Remote Play more comfortable
+
+```
+./build/make-wrapper.sh # out/RemotePlayWrapper.app created
+```
+
+The wrapper searches for RemotePlay.app first in its own `Contents/Resources` folder, and fallbacks to `/Applications`
 
 ## License
 
